@@ -4,28 +4,28 @@ import { jsPDF } from "jspdf";
 import "./App.css";
 
 // const data = {
-//   Sheet1: [
-//     {
-//       SNo: 1,
-//       Name: "loki",
-//       Email: "nm8602@srmist.edu.in",
-//       Title: "Associate Director HR",
-//       Company: "pipto",
-//     },
-//     {
-//       SNo: 2,
-//       Name: "yash",
-//       Email: "nm8602@srmist.edu.in",
-//       Title: "Associate Director HR",
-//       Company: "kepto",
-//     },
-//     {
-//       SNo: 3,
-//       Name: "krish",
-//       Email: "nm8602@srmist.edu.in",
-//       Title: "Associate Director HR",
-//       Company: "zepto it technology",
-//     },
+  // Sheet1: [
+  //   {
+  //     SNo: 1,
+  //     Name: "loki",
+  //     Email: "nm8602@srmist.edu.in",
+  //     Title: "Associate Director HR",
+  //     Company: "pipto",
+  //   },
+  //   {
+  //     SNo: 2,
+  //     Name: "yash",
+  //     Email: "nm8602@srmist.edu.in",
+  //     Title: "Associate Director HR",
+  //     Company: "kepto",
+  //   },
+  //   {
+  //     SNo: 3,
+  //     Name: "krish",
+  //     Email: "nm8602@srmist.edu.in",
+  //     Title: "Associate Director HR",
+  //     Company: "zepto it technology",
+  //   },
 //   ],
 // };
 
@@ -248,7 +248,7 @@ const App = () => {
   return (
     <div className="container">
       <h2 className="heading">Upload HR Contact Data</h2>
-      <h6>keys should be "Name" "Email" "Company" </h6>
+      <h6 style={{color:"red"}}>keys should be "Name" "Email" "Company" </h6>
       <textarea
         rows="15"
         cols="50"
