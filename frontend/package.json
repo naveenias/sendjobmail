@@ -8,6 +8,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "ajv": "^8.12.0",
+    "axios": "^1.8.4",
     "jspdf": "^3.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -39,11 +40,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.26.10",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
-    "eslint": "^5.16.0"
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^8.57.1"
   },
   "engines": {
-    "node": "22.12.0"
+    "node": "22.x"
   }
 }
