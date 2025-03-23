@@ -248,7 +248,7 @@ const App = () => {
   return (
     <div className="container">
       <h2 className="heading">Upload HR Contact Data</h2>
-  
+      <h6>keys should be "Name" "Email" "Company" </h6>
       <textarea
         rows="15"
         cols="50"
