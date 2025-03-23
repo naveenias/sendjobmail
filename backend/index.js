@@ -6,7 +6,7 @@ const app = express();
 
 // Enable CORS with specific configuration
 app.use(cors({
-    origin: 'https://naveensjobmail.vercel.app/', // Replace with your frontend URL
+    origin: 'https://naveensjobmail.vercel.app', // Replace with your frontend URL
     methods: ['GET', 'POST', 'OPTIONS'], // Allow specific HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
     credentials: true, // Include credentials if needed
