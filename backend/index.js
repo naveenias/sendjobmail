@@ -18,7 +18,7 @@ app.use(cors(
 app.use(express.json());
 
 // Load email routes
-const emailroute = require('./routs/email');
+const emailroute = require('./routes/email');
 app.use('/api/email', emailroute);
 
 // Start the server
