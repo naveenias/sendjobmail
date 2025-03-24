@@ -7,7 +7,7 @@ const app = express();
 // Enable CORS with specific configuration
 app.use(cors(
     {
-    origin: 'https://naveensjobmail.vercel.app', 
+    origin: ['https://naveensjobmail.vercel.app', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'OPTIONS'], 
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true, 
@@ -16,6 +16,11 @@ app.use(cors(
 
 // Middleware to parse JSON requests
 app.use(express.json());
+
+app.get("/", (req, res) => {
+    res.send("API is working!");
+  });
+  
 
 // Load email routes
 const emailroute = require('./routes/email');
