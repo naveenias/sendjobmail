@@ -5,12 +5,14 @@ require('dotenv').config();
 const app = express();
 
 // Enable CORS with specific configuration
-app.use(cors({
-    origin: 'https://naveensjobmail.vercel.app', // Replace with your frontend URL
-    methods: ['GET', 'POST', 'OPTIONS'], // Allow specific HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
-    credentials: true, // Include credentials if needed
-}));
+app.use(cors(
+    {
+    origin: 'https://naveensjobmail.vercel.app', 
+    methods: ['GET', 'POST', 'OPTIONS'], 
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, 
+}
+));
 
 // Middleware to parse JSON requests
 app.use(express.json());
