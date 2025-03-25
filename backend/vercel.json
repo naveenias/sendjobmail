@@ -12,10 +12,6 @@
       }
     ],
     "routes": [
-       {
-      "src": "/api/email",
-      "dest": "api/email.js"
-       },
       {
         "src": "/(.*)",
         "dest": "index.js"
