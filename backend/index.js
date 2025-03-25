@@ -5,13 +5,13 @@ require('dotenv').config();
 const app = express();
 
 // Handle preflight requests
-app.options('*', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all or specify your domain
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    return res.status(200).end();
-  });
+// app.options('*', (req, res) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all or specify your domain
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
+//     return res.status(200).end();
+//   });
   
   // Enable CORS for all routes
   app.use(cors({
