@@ -1,7 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
-const cors = require('cors');
+// const cors = require('cors');
 
 
 const router = express.Router();
@@ -14,10 +14,10 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.options('/sendemail', cors(), (req, res) => {
-  console.log("OPTIONS request received for /sendemail");  // Debugging log
-  res.sendStatus(200);  // Respond with 200 OK
-});
+// router.options('/sendemail', cors(), (req, res) => {
+//   console.log("OPTIONS request received for /sendemail");  // Debugging log
+//   res.sendStatus(200);  // Respond with 200 OK
+// });
 
 router.post('/sendemail', async (req, res) => {
   const { name, email, subject, message, attachments } = req.body; // Accepting cover letter from frontend
