@@ -15,7 +15,7 @@ const app = express();
   
   // Enable CORS for all routes
   app.use(cors({
-    origin: "https://naveensjobmail.vercel.app/", // Change '*' to a specific origin for security
+    origin: "https://naveensjobmail.vercel.app", // Change '*' to a specific origin for security
     methods: ['GET', 'POST', 'OPTIONS'], 
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true, 
