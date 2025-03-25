@@ -1,15 +1,21 @@
 {
     "version": 2,
+    "functions": {
+        "api/email.js": {
+          "includeFiles": ["Naveen_Resume.pdf"]
+        }
+    },
     "builds": [
       {
         "src": "index.js",
-        "use": "@vercel/node",
-        "config": {
-          "includeFiles": ["dist/**", "Naveen_Resume.pdf"]
-        }
+        "use": "@vercel/node"
       }
     ],
     "routes": [
+       {
+      "src": "/api/email",
+      "dest": "api/email.js"
+       },
       {
         "src": "/(.*)",
         "dest": "index.js"
