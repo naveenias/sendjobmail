@@ -28,7 +28,7 @@ const app = express();
 app.use(express.json());
 
 // ✅ Load email routes
-const emailroute = require('./api/email');
+const emailroute = require('./routes/email');
 app.use('/api/email', emailroute);
 
 // ✅ Start the server

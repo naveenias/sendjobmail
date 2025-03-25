@@ -6,13 +6,7 @@ require('dotenv').config();
 
 const router = express.Router();
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+
 
 // router.options('/sendemail', cors(), (req, res) => {
 //   console.log("OPTIONS request received for /sendemail");  // Debugging log
@@ -20,10 +14,22 @@ const transporter = nodemailer.createTransport({
 // });
 
 router.post('/sendemail', async (req, res) => {
-  const { name, email, subject, message, attachments } = req.body; // Accepting cover letter from frontend
+  const { email, subject, message, attachments } = req.body; // Accepting cover letter from frontend
   console.log(attachments)
   console.log(attachments[0].filename)
   console.log(attachments[0].content)
+
+  // Create a transporter
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+
+
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     console.error(`❌ Invalid email: ${email}`);
