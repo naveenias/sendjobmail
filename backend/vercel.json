@@ -5,7 +5,7 @@
           "includeFiles": "Naveen_Resume.pdf"
         },
         "index.js": {
-            "runtime": "nodejs22.x" 
+            "runtime": "nodejs" 
           }
     },
     "routes": [
