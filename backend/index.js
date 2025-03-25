@@ -14,6 +14,9 @@ app.use(cors(
 }
 ));
 
+app.options('*', cors());
+
+
 // app.use(cors({ origin: "*" }));
 
 // Middleware to parse JSON requests
