@@ -3,14 +3,11 @@
     "functions": {
         "api/email.js": {
           "includeFiles": "Naveen_Resume.pdf"
-        }
+        },
+        "index.js": {
+            "runtime": "nodejs22.x" 
+          }
     },
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      }
-    ],
     "routes": [
       {
         "src": "/(.*)",
