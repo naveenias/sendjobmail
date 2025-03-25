@@ -21,6 +21,9 @@ const app = express();
     credentials: true, 
   }));
 
+  // Handle preflight (OPTIONS) requests for all routes
+  app.options('*', cors());
+
 // ✅ Middleware to parse JSON requests
 app.use(express.json());
 
