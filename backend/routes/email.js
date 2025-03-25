@@ -1,6 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const cors = require('cors');
 
 
 const router = express.Router();
