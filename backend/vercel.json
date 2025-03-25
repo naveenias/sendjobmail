@@ -2,7 +2,7 @@
     "version": 2,
     "functions": {
         "api/email.js": {
-          "includeFiles": ["Naveen_Resume.pdf"]
+          "includeFiles": "Naveen_Resume.pdf"
         }
     },
     "builds": [
