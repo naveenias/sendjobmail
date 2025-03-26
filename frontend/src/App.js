@@ -46,6 +46,8 @@ const App = () => {
 
 
   const generatePDF = async (record) => {
+    const Name = record.name || "sir/madom";
+    const Company = record.Company || "Company";
     const doc = new jsPDF();
     doc.setFont("times", "normal");
     doc.setFontSize(12);
@@ -63,14 +65,14 @@ const App = () => {
 
   ${currentDate}
 
-  ${record.Name}
-  ${record.Company}
+  ${Name}
+  ${Company}
 
-  Subject: Application for a Relevant Role at ${record.Company}
+  Subject: Application for a Relevant Role at ${Company}
 
-  Dear ${record.Name},
+  Dear ${Name},
 
-  I am reaching out to express my keen interest in any relevant opportunities at ${record.Company}. I am a 
+  I am reaching out to express my keen interest in any relevant opportunities at ${Company}. I am a 
   final-year Master of Computer Applications (MCA) student at SRM Institute of Science and Technology, with 
   expertise in Full-Stack Web Development using the MERN stack (MongoDB, Express.js, React.js, and Node.js).
 
@@ -84,10 +86,10 @@ const App = () => {
 
   My strong foundation in JavaScript, Python, Data Structures and Algorithms (DSA), REST API integration, and 
   secure authentication mechanisms, enables me to develop secure and efficient applications. I am highly motivated 
-  to apply my skills to contribute to ${record.Company}’s projects and goals.
+  to apply my skills to contribute to ${Company}’s projects and goals.
 
   I have attached my resume for your review. I would love the opportunity to discuss how my skills align with 
-  the needs of ${record.Company}. Please feel free to reach out at your convenience.
+  the needs of ${Company}. Please feel free to reach out at your convenience.
   Looking forward to your response.
 
   Best regards,  
@@ -109,7 +111,7 @@ const App = () => {
         reader.readAsDataURL(pdfBlob);
         reader.onloadend = () => {
             resolve({
-                filename: `Naveen_M_${record.Company.replace(/\s+/g, "_")}_Cover_Letter.pdf`,
+                filename: `Naveen_M_${Company.replace(/\s+/g, "_")}_Cover_Letter.pdf`,
                 content: reader.result.split(",")[1], // Extract Base64 content
                 encoding: "base64",
             });
@@ -138,19 +140,22 @@ const App = () => {
 
     for (let index = 0; index < jsondata.length; index++) {
       const record=jsondata[index]
+      const Name=record.Name || "sir/madom";
+      const Company=record.Company || "Company";
+      const Email=record.Email 
       console.log(index)
       console.log(record)
       const coverLetterFile = await generatePDF(record);
       const payload = {
-        name: record.Name,
-        email: record.Email,
-        subject: `Application for a Relevant Opportunity at ${record.Company}`,
+        name: Name,
+        email: Email,
+        subject: `Application for a Relevant Opportunity at ${Company}`,
         message: `
-          Dear ${record.Name},
+          Dear ${Name},
 
           I hope this message finds you well.
 
-          I am reaching out to express my keen interest in any relevant opportunities at ${record.Company}. I am a final-year Master 
+          I am reaching out to express my keen interest in any relevant opportunities at ${Company}. I am a final-year Master 
           of Computer Applications (MCA) student at SRM Institute of Science and Technology, with expertise in Full-Stack Web 
           Development using the MERN stack (MongoDB, Express.js, React.js, and Node.js).
 
@@ -166,7 +171,7 @@ const App = () => {
           authentication mechanisms enables me to build scalable, secure, and efficient applications
 
           Please find my resume and cover letter attached for your reference. I would be grateful for an opportunity to discuss how my 
-          skills align with the needs of ${record.Company}.
+          skills align with the needs of ${Company}.
 
           Thank you for considering my application. I look forward to the possibility of contributing to your team.
 
@@ -179,17 +184,17 @@ const App = () => {
       };
 
       try {
-        console.log(`Sending email to ${record.Email}...`);
+        console.log(`Sending email to ${Email}...`);
         const response = await sendemail(payload);
 
         if (response.status === "success") {
-          console.log(`✅ Success: Email sent to ${record.Email}`);
+          console.log(`✅ Success: Email sent to ${Email}`);
         } else {
-          console.error(`❌ Failed to send email to ${record.Email} - ${response.message}`);
+          console.error(`❌ Failed to send email to ${Email} - ${response.message}`);
           failedList.push(record);
         }
       } catch (error) {
-        console.error(`❌ Error sending email to ${record.Email} - ${error.message}`);
+        console.error(`❌ Error sending email to ${Email} - ${error.message}`);
         failedList.push(record);
       }
 
@@ -211,40 +216,6 @@ const App = () => {
     }
   };
 
-  // return (
-  //   <div>
-  //     <h2>Upload HR Contact Data</h2>
-  //     <textarea
-  //       rows="10"
-  //       cols="50"
-  //       placeholder="Paste JSON data here..."
-  //       value={data}
-  //       onChange={handleJsondata}
-  //     />
-  //     <br />
-  //     <button onClick={handleSendEmails} disabled={isSending}>
-  //       {isSending ? "Sending..." : "Send Emails"}
-  //     </button>
-
-  //     {totalEmails > 0 && (
-  //       <div style={{ marginTop: "10px" }}>
-  //         <progress value={progress} max={totalEmails} style={{ width: "100%" }} />
-  //         <p>{progress}/{totalEmails} emails sent</p>
-  //       </div>
-  //     )}
-
-  //     {failedEmails.length > 0 && (
-  //       <div>
-  //         <h2>Failed Emails:</h2>
-  //         <ul>
-  //           {failedEmails.map((record) => (
-  //             <li key={record.Email}>{record.Name} ({record.Email}) - {record.Company}</li>
-  //           ))}
-  //         </ul>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
   return (
     <div className="container">
       <h2 className="heading">Upload HR Contact Data</h2>
@@ -277,7 +248,6 @@ const App = () => {
           <ul className="failed-emails-list">
             {failedEmails.map((record) => (
               <li key={record.Email} className="failed-email-item">
-                {record.Name} ({record.Email}) - {record.Company}
               </li>
             ))}
           </ul>
