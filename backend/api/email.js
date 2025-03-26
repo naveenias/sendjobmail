@@ -1,23 +1,16 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
+const path = require('path');
 require('dotenv').config();
-// const cors = require('cors');
-
 
 const router = express.Router();
 
-
-
-// router.options('/sendemail', cors(), (req, res) => {
-//   console.log("OPTIONS request received for /sendemail");  // Debugging log
-//   res.sendStatus(200);  // Respond with 200 OK
-// });
-
 router.post('/sendemail', async (req, res) => {
   const { email, subject, message, attachments } = req.body; // Accepting cover letter from frontend
-  console.log(attachments)
-  console.log(attachments[0].filename)
-  console.log(attachments[0].content)
+
+  console.log(attachments);
+  console.log(attachments[0]?.filename);
+  console.log(attachments[0]?.content);
 
   // Create a transporter
   const transporter = nodemailer.createTransport({
@@ -28,18 +21,19 @@ router.post('/sendemail', async (req, res) => {
     },
   });
 
-
-
-
+  // Validate email
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     console.error(`❌ Invalid email: ${email}`);
     return res.status(400).json({ status: 'failed', message: `Invalid email format: ${email}` });
   }
 
-  if (!attachments || !attachments[0].filename || !attachments[0].content) {
+  // Validate attachments
+  if (!attachments || !attachments[0]?.filename || !attachments[0]?.content) {
     console.error(`❌ Missing cover letter attachment`);
     return res.status(400).json({ status: 'failed', message: 'Cover letter attachment is required' });
   }
+
+  const resumePath = path.join(__dirname, '../assets/Naveen_Resume.pdf'); // Correct file path
 
   const mailOptions = {
     from: `"Naveen M" <naveenacp24@gmail.com>`,
@@ -49,7 +43,7 @@ router.post('/sendemail', async (req, res) => {
     attachments: [
       {
         filename: 'Naveen_Resume.pdf',
-        path: './Naveen_Resume.pdf',
+        path: resumePath, // Use absolute path from assets
       },
       {
         filename: attachments[0].filename, // Dynamic filename
@@ -63,7 +57,7 @@ router.post('/sendemail', async (req, res) => {
 
     const info = await transporter.sendMail(mailOptions);
     console.log(info);
-    
+
     if (info.response.includes('250')) {
       console.log(`✅ Email sent to ${email} - Response: ${info.response}`);
       return res.status(200).json({ status: 'success', message: `Email sent to ${email}` });
