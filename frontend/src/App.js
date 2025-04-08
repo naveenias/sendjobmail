@@ -46,8 +46,8 @@ const App = () => {
 
 
   const generatePDF = async (record) => {
-    const Name = record.name || "sir/madom";
-    const Company = record.Company || "Company";
+    const Name = record.name || "sir/madam";
+    const Company = record.Company || "Your Company";
     const doc = new jsPDF();
     doc.setFont("times", "normal");
     doc.setFontSize(12);
